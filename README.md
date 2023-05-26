@@ -40,7 +40,7 @@ Please note that for security reasons, the Firebase credentials have been remove
 
 ## 3. Firebase Database Structure <a name="firebase-database-structure"></a>
 
-The Firebase database for the pillbox project has the following structure:
+The Firebase Realtime Database for the pillbox project has the following structure:
 
 - **Admin**: This node contains the ID of the admin user who manages the system.
 
