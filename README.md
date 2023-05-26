@@ -7,10 +7,11 @@ This documentation provides an overview of the pillbox project, which involves a
 2. [Technologies Used](#technologies-used)
     1. [Arduino](#arduino)
     2. [Firebase Integration](#firebase-integration)
-3. [Arduino MKR WiFi 1010](#arduino-mkr-wifi-1010)
-4. [SD Card Contents](#sd-card-contents)
-5. [Fritzing Diagram](#fritzing-diagram)
-6. [Prototype Images](#prototype-images)
+3. [Firebase Database Structure](#firebase-database-structure)
+4. [Arduino MKR WiFi 1010](#arduino-mkr-wifi-1010)
+5. [SD Card Contents](#sd-card-contents)
+6. [Fritzing Diagram](#fritzing-diagram)
+7. [Prototype Images](#prototype-images)
 
 ## 1. Introduction<a name="introduction"></a>
 
@@ -37,7 +38,30 @@ To integrate Firebase into the project, the `Firebase_Arduino_WiFiNINA` library 
 
 Please note that for security reasons, the Firebase credentials have been removed from this documentation. You will need to obtain your own Firebase credentials and configure them in the project to establish a connection with the Firebase backend.
 
-## 3. Arduino MKR WiFi 1010<a name="arduino-mkr-wifi-1010"></a>
+## 3. Firebase Database Structure <a name="firebase-database-structure"></a>
+
+The Firebase database for the pillbox project has the following structure:
+
+- **Admin**: This node contains the ID of the admin user who manages the system.
+
+- **Residences**: This node represents the residences registered in the system. Each residence is assigned a unique ID as a child node.
+
+  - **Data**: This node contains general information about the residence, such as the city, country, email, name, phone, province, street, timetable, and ZIP code.
+
+  - **Residents**: This node stores information about the residents living in the residence. Each resident is assigned a unique ID as a child node.
+
+    - **Data**: This node contains details about each resident, including their birthdate, gender, IDPillbox, name, and surnames.
+
+    - **Medication**: This node stores the medication information for each resident. It is structured based on the days of the week (e.g., Monday, Tuesday, etc.) and contains the medication details for each time of the day (morning, afternoon, evening, night). Each medication entry includes the hour, medication name, and whether it has been taken or not.
+
+- **Staff**: This node stores information about the staff members associated with the residence. Each staff member is assigned a unique ID as a child node.
+
+  - **Data**: This node contains details about each staff member, such as their birthdate, email, gender, name, phone, and surnames.
+
+This database structure allows for efficient organization and retrieval of data related to residences, residents, and staff members involved in the pillbox project.
+
+
+## 4. Arduino MKR WiFi 1010<a name="arduino-mkr-wifi-1010"></a>
 
 The Arduino MKR WiFi 1010 is a development board that serves as an entry point for designing basic IoT applications. It features a low-power 32-bit Arm Cortex-M0 SAMD21 processor and supports WiFi and Bluetooth connectivity.
 
@@ -73,7 +97,7 @@ The `setup()` function performs an initial LED test, establishes a connection wi
 
 The `loop()` function constantly checks whether a pill needs to be taken or not. If required, it emits a sound (if enabled) and lights up the corresponding LED associated with the day of the week.
 
-## 4. SD Card Contents<a name="sd-card-contents"></a>
+## 5. SD Card Contents<a name="sd-card-contents"></a>
 
 The SD card contains various files with specific purposes for the pillbox project. Here is a summary of the files and their formats:
 
@@ -89,7 +113,7 @@ The SD card contains various files with specific purposes for the pillbox projec
   - Format: SSID
             Password
 
-## 5. Fritzing Diagram<a name="fritzing-diagram"></a>
+## 6. Fritzing Diagram<a name="fritzing-diagram"></a>
 
 ![Screenshot](Images/FritzingDiagram.png)
 
@@ -108,7 +132,7 @@ The Fritzing diagram provides a visual representation of the connections in the 
 - DC Power Cable (5.5mm/2.1mm): 1
 - USB A Male to Micro USB Female Cable: 1
 
-## 6. Prototype Images<a name="prototype-images"></a>
+## 7. Prototype Images<a name="prototype-images"></a>
 
 The prototype of the pillbox features a 3D-printed enclosure to house all the electronics. Figure 85 showcases the 3D design of the pillbox from both the outside and inside views, while Figure 86 displays the final result of the enclosure, both internally and externally.
 
