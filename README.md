@@ -1,4 +1,4 @@
-# Pillbox Documentation
+# SaniApp Pillbox Documentation
 
 This documentation provides an overview of the pillbox project, which involves a pillbox connected to the internet. The pillbox allows residents to receive notifications about their medication.
 
