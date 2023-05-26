@@ -91,6 +91,8 @@ The SD card contains various files with specific purposes for the pillbox projec
 
 ## 5. Fritzing Diagram<a name="fritzing-diagram"></a>
 
+![Screenshot](Images/FritzingDiagram.png)
+
 The Fritzing diagram provides a visual representation of the connections in the electronic pillbox. It showcases the numerous components that make up the physical pillbox, along with the quantities of each component and the power supply connections. The power supply cable provides electrical power to the system, while the USB port, powered by the aforementioned cable, supplies power to the microcontroller.
 
 ### Component List:
@@ -108,5 +110,8 @@ The Fritzing diagram provides a visual representation of the connections in the 
 
 ## 6. Prototype Images<a name="prototype-images"></a>
 
-The prototype of the pillbox features a 3D-printed enclosure to house all the electronics. Figure 85 showcases the 3D design of the pillbox from both the outside and inside views, while Figure 86 displays the final result of the enclosure, both internally and externally. Please refer to the original documentation for the images.
+The prototype of the pillbox features a 3D-printed enclosure to house all the electronics. Figure 85 showcases the 3D design of the pillbox from both the outside and inside views, while Figure 86 displays the final result of the enclosure, both internally and externally.
+
+![Screenshot](Images/Prototipe1.png)
+![Screenshot](Images/Prototipe2.png)
 
