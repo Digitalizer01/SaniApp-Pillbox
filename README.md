@@ -12,6 +12,7 @@ This documentation provides an overview of the pillbox project, which involves a
 5. [SD Card Contents](#sd-card-contents)
 6. [Fritzing Diagram](#fritzing-diagram)
 7. [Prototype Images](#prototype-images)
+8. [Android app repository](#android-app-repository)
 
 ## 1. Introduction<a name="introduction"></a>
 
@@ -138,4 +139,9 @@ The prototype of the pillbox features a 3D-printed enclosure to house all the el
 
 ![Screenshot](Images/Prototipe1.png)
 ![Screenshot](Images/Prototipe2.png)
+
+
+## 8. Android app repository<a name="android-app-repository"></a>
+
+The Android app serves as the mobile platform for managing the pillbox system. Its repository contains all the necessary code and resources for developing and deploying the app on Android devices. It complements the pillbox repository by providing a user-friendly interface and functionality to efficiently manage medication schedules and resident information. You can explore the Android app repository [here](https://github.com/Digitalizer01/SaniApp).
 
