@@ -36,7 +36,7 @@ The pillbox project integrates Firebase, a platform for building web and mobile 
 
 To integrate Firebase into the project, the `Firebase_Arduino_WiFiNINA` library is used. This library facilitates communication between the Arduino MKR WiFi 1010 and the Firebase backend.
 
-Please note that for security reasons, the Firebase credentials have been removed from this documentation. You will need to obtain your own Firebase credentials and configure them in the project to establish a connection with the Firebase backend.
+Please note that for security reasons, the Firebase credentials have been removed from this project. You will need to obtain your own Firebase credentials and configure them in the project to establish a connection with the Firebase backend.
 
 ## 3. Firebase Database Structure <a name="firebase-database-structure"></a>
 
