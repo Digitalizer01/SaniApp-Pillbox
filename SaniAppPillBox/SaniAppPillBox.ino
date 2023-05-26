@@ -17,8 +17,8 @@
 #include <SD.h>
 #include <RTCZero.h>
 
-#define DATABASE_URL "pastilleroelectronico-f32c6-default-rtdb.europe-west1.firebasedatabase.app" //<databaseName>.firebaseio.com or <databaseName>.<region>.firebasedatabase.app
-#define DATABASE_SECRET "w3XNUkrq7Mt5anZICAeU4cN2N0NgeJeuKAqJn3Vb"
+#define DATABASE_URL "---" //<databaseName>.firebaseio.com or <databaseName>.<region>.firebasedatabase.app
+#define DATABASE_SECRET "---"
 
 // Firebase
 FirebaseData fbdo;
@@ -47,7 +47,7 @@ String TIME_WEEK_DAY_STRING;
 String TIME_DAYPART_STRING;
 int keyIndex = 0;                           // your network key Index number (needed only for WEP)
 int status = WL_IDLE_STATUS;
-const int GMT = 2; //change this to adapt it to your time zone
+const int GMT = 1; //change this to adapt it to your time zone
 
 // Buzzer
 const int buzzerPin = 7;
@@ -133,6 +133,7 @@ void setup() {
   pinMode(A6, OUTPUT); // Sunday
 
   testleds();
+
   getSDdata();
 
   // ------------- WiFi -------------
@@ -264,7 +265,7 @@ void loop() {
   }
 
   // Check if pill has to be taken
-  if (millis() - sendDataPrevMillis > 100 || sendDataPrevMillis == 0){
+  if (millis() - sendDataPrevMillis > 700 || sendDataPrevMillis == 0){
     sendDataPrevMillis = millis();
     count++;
 
@@ -340,8 +341,13 @@ void loop() {
     int hourint = hourstr.toInt();
     int minuteint = minutestr.toInt();
 
-    if(hourint == TIME_HOUR && minuteint == TIME_MINUTE){
-      Serial.println("They're the same!\n");
+    String medicinename;
+    if(Firebase.getString(fbdo, path + ARDUINOID + "/Medication/" + TIME_WEEK_DAY_STRING + "/" + TIME_DAYPART_STRING + "/Medication")){
+      medicinename = fbdo.stringData();
+    }
+
+    if(hourint == TIME_HOUR && minuteint == TIME_MINUTE && !medicinename.equals("---")){
+      Serial.println("Need to take medicine\n");
       beep(880, 100);
       medication = 1;
 
@@ -376,7 +382,7 @@ void loop() {
       }
     }
     else{
-      Serial.println("They're NOT the same!\n");
+      Serial.println("No need to take medicine\n");
       digitalWrite(A0, LOW);    // turn the LED off by making the voltage LOW
       digitalWrite(A1, LOW);
       digitalWrite(A2, LOW);
@@ -482,37 +488,37 @@ void beep(int note, int duration)
 
 void testleds(){
   digitalWrite(A0, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(300);
+  delay(3000);
   digitalWrite(A0, LOW);    // turn the LED off by making the voltage LOW
   delay(300);
 
   digitalWrite(A1, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(300);
+  delay(3000);
   digitalWrite(A1, LOW);    // turn the LED off by making the voltage LOW
   delay(300);
 
   digitalWrite(A2, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(300);
+  delay(3000);
   digitalWrite(A2, LOW);    // turn the LED off by making the voltage LOW
   delay(300);
 
   digitalWrite(A3, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(300);
+  delay(3000);
   digitalWrite(A3, LOW);    // turn the LED off by making the voltage LOW
   delay(300);
 
   digitalWrite(A4, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(300);
+  delay(3000);
   digitalWrite(A4, LOW);    // turn the LED off by making the voltage LOW
   delay(300);
 
   digitalWrite(A5, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(300);                       // wait for a second
+  delay(3000);                       // wait for a second
   digitalWrite(A5, LOW);    // turn the LED off by making the voltage LOW
   delay(300);
 
   digitalWrite(A6, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(300);
+  delay(3000);
   digitalWrite(A6, LOW);    // turn the LED off by making the voltage LOW
   delay(300);
 }
@@ -575,7 +581,7 @@ void errorLog(String description){
 }
 
 void errorBlinkBuzzer(){
-  for(int i=0; i<6; i++){
+  for(int i=0; i<5; i++){
     digitalWrite(A0, HIGH);
     digitalWrite(A1, HIGH);
     digitalWrite(A2, HIGH);
@@ -616,7 +622,7 @@ void getSDdata(){
     String flag = getValue(line,'=',0);
     String value = getValue(line,'=',1);
     if(flag == "sound"){
-      if(value = "false"){
+      if(value == "false"){
         buzzerAllow = false;
       }
     }
